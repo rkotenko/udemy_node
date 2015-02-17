@@ -10,3 +10,10 @@ block content
     
   script#post-template(type="text/template").
     <h3><%= title %></h3>
+    <p><%= content %></h3>
+    <div>
+        <button class="delete">Delete</button>
+    </div>
+    
+  script(type="text/javascript").
+    var bootstrapPosts = !{JSON.stringify(posts)};

@@ -7,6 +7,11 @@ app.AppView = Backbone.View.extend({
     },
     initialize: function () {
         this.listenTo(app.posts, 'add', this.addOne);
+        this.listenTo(app.posts, 'reset', this.addAll);
+    },
+    addAll: function () {
+        this.$('#posts').empty();
+        app.posts.each(this.addOne, this);    
     },
     addOne: function (post) {
         var view = new app.PostView({model: post});

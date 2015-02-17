@@ -1,6 +1,7 @@
 var app = app || {};
 
 app.PostModel = Backbone.Model.extend({
+    idAttribute: '_id', //this is the unique id from mongo
     defaults: {
         title: '',
         content: '',

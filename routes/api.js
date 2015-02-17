@@ -16,4 +16,11 @@ router.post('/', function (req, res) {
    });
 });
 
+router.delete('/:id', function (req, res) {
+    var id = req.params.id;
+    Post.remove({_id: id}, function () {
+        res.send('success');
+    });
+});
+
 module.exports = router;
