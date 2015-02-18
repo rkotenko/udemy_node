@@ -10,7 +10,7 @@ app.PostModel = Backbone.Model.extend({
 });
 
 app.PostCollection = Backbone.Collection.extend({
-    url: '/api',
+    url: '/blog/api',
     model: app.PostModel
 });
 
