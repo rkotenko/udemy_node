@@ -6,14 +6,14 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
-var passportConfig = require('config/passport');
+var passportConfig = require('./config/passport');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/udemy/node/auth-local');
+mongoose.connect('mongodb://localhost/auth-local');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
