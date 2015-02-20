@@ -1,3 +1,8 @@
+/*
+    The mongoose schema file for a user document.  Contains its def,
+    actions to take before a save, and a comparePassword function that
+    can be used by the passport localStrategy
+ */
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 

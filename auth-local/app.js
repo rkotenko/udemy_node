@@ -5,7 +5,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-
+var passport = require('passport');
+var session = require('express-session');
 
 var passportConfig = require('./config/passport');
 
@@ -28,6 +29,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+// set up a session and set passport to use it
+app.use(session({secret: 'secret'}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/auth', authentication);
 app.use('/', routes);
