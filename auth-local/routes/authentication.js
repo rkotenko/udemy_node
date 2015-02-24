@@ -10,26 +10,10 @@ router.post('/login', passport.authenticate('local', {
     successRedirect: '/',
     failureRedirect: '/auth/login'}
 ));
-/*router.post('/login', function (req, res, next) {
-    passport.authenticate('local', function (err, user, info) {
-        if(err) {
-            return next(err);
-        }
-        
-        if(!user) {
-            return res.redirect('/auth/login');
-        }
-        
-        // user successfully authenticated
-        req.login(user, function (err) {
-            if(err) {
-                return next(err);
-            }
-            
-            // user has successfully logged in
-            return res.redirect('/');
-        });
-    })(req, res, next);
-});*/
+
+router.get('/logout', function (req, res) {
+    req.logout();
+    res.redirect('/auth/login');
+});
 
 module.exports = router;

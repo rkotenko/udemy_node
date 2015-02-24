@@ -35,6 +35,17 @@ passport.deserializeUser(function (id, next) {
     });
 });
 
+// ensure authentication method
+module.exports = {
+    ensureAuthenticated: function (req, res, next) {
+        if(req.isAuthenticated()) {
+            return next();
+        }
+        
+        res.redirect('/auth/login');
+    }
+};
+
 // Strategies:
 var localStrategy = new LocalStrategy(function (username, password, next) {
     User.findOne({username: username}, function (err, user) {
@@ -62,3 +73,4 @@ var localStrategy = new LocalStrategy(function (username, password, next) {
 });
 
 passport.use(localStrategy);
+
