@@ -4,11 +4,19 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var passport = require('passport');
+var session = require('express-session');
 
+var passportConfig = require('./config/passport');
+
+var authentication = require('./routes/authentication');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+
+mongoose.connect('mongodb://localhost/auth-facebook');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +30,12 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(session({secret: 'secret'}));  // load express session first so passport initialize can use it
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use('/auth', authentication);
+app.use(passportConfig.ensureAuthenticated);
 app.use('/', routes);
 app.use('/users', users);
 
