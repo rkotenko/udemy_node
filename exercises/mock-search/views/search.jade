@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  input(type="text", name="search" id="search")
+  input(type="submit" id="submit")
+  dl#results
+  
+  script#results-template(type="text/x-handlebars-template").
+    {{#each this}}
+      <dt>{{name}}</dt>
+      <dd>{{desc}}</dd>
+    {{/each}} 
