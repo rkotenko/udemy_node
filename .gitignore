@@ -3,4 +3,5 @@
 .idea/watcherTasks.xml
 auth-facebook/node_modules
 auth-local/node_modules
+exercises/mock-search/node_modules
 exercises/mock-search/test.js
