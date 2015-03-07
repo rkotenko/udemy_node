@@ -7,7 +7,10 @@ app.AppView = Backbone.View.extend({
     },
     initialize: function () {
         this.listenTo(app.posts, 'add', this.addOne);
-        this.listenTo(app.posts, 'reset', this.addAll);
+        
+        // a fetch is called in javascripts/app.js.  This fires an 'all' event
+        // listen here and then add all the posts to the page
+        this.listenTo(app.posts, 'all', this.addAll);
     },
     addAll: function () {
         this.$('#posts').empty();
